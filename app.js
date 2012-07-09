@@ -4,6 +4,7 @@
  */
 
 var express = require('express')
+  , stylus = require('stylus')
   , routes = require('./routes');
 
 var app = module.exports = express.createServer();
@@ -16,7 +17,19 @@ app.configure(function(){
   app.use(express.bodyParser());
   app.use(express.methodOverride());
   app.use(app.router);
+/*
+  app.use express.cookieParser();
+  app.use express.session({secret : "shhhhhhhhhhhhhh!"});
+  app.use express.logger();
+*/
+  app.use(stylus.middleware({
+    src: __dirname + '/views',
+    dest: __dirname + '/public',
+    compress: true
+  }));
+
   app.use(express.static(__dirname + '/public'));
+  
 });
 
 app.configure('development', function(){
@@ -26,6 +39,14 @@ app.configure('development', function(){
 app.configure('production', function(){
   app.use(express.errorHandler());
 });
+
+function compile_stylus(str, path) {
+  return stylus(str)
+    .set('filename', path)
+    .set('compress', true)
+    .use(nib())
+    .import('nib');
+}
 
 // Routes
 
