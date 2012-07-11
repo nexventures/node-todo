@@ -1,2 +1,14 @@
-h1= title
-p Welcome to #{title}
+
+ul.to-do
+  li.add
+    span
+      label(for='add-input') Add New
+      input#add-input(
+        type='text'
+        required
+      )
+  li.in-progress
+    a(href='#') item 1
+  li.finished
+    a(href='#') item 2
+

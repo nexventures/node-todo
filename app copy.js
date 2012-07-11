@@ -4,7 +4,6 @@
 
 var express = require('express')
   , stylus  = require('stylus')
-  , nib = require('nib')
   , routes  = require('./routes');
 
 var app = module.exports = express.createServer();
@@ -24,13 +23,7 @@ app.configure(function(){
   app.use(stylus.middleware({
     src: __dirname + '/views',
     dest: __dirname + '/public',
-    compile: function(str, path) {
-      return stylus(str)
-        .set('filename', path)
-        .set('compress', true)
-        .use(nib())
-        .import('nib');
-    }
+    compress: true
   }));
 
   app.use(express.static(__dirname + '/public'));

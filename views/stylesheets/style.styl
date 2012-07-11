@@ -1,10 +1,89 @@
-@import "reset.css"
+@import reset
+
+html
+  height 100%
+  width 100%
 
 body
-  padding 50px
-  font 14px "Lucida Grande", Helvetica, Arial, sans-serif
-  background black
+  padding 0px
+  font 12px Helvetica, Arial, sans-serif
+  background linear-gradient(top, black, #444)
   color white
+
+h1
+	font-size 3em
+	font-weight bolder
+
+h2
+	font-size 2em
+	font-weight bold
+
+#header
+  padding 10px 20px
+  border-bottom 1px solid white
+  h2
+    font-weight 100
+    color #99f
+
+#footer
+  padding 10px 20px
+  border-top 2px solid white
 
 a
   color #999
+
+ul.to-do 
+  li
+    padding 0
+    margin 0
+    border-top 1px dotted #ccc
+    display block
+    font-size 1.66em
+    line-height 2em
+    &:first-child
+      border-top none
+    span
+    a
+    a:hover
+      color: white;
+      display block
+      padding 0.33em 1em 0.33em 1.5em;
+      text-decoration none
+
+    a:hover
+    a.active
+      background-color #99f;
+
+  li.finished
+    text-decoration line-through
+    color #999
+    span
+    a
+    a:hover
+      color #999
+      text-decoration line-through
+    a:hover
+    a.active
+      background-color #99f
+      color: #ccc
+
+  li.add
+    span
+      padding-left 1em
+      position relative
+      label
+        position absolute
+        font-size 12px
+        left 0
+        margin-left 2.5em
+        z-index 100
+        color #999
+      input[type='text']
+        border 1px solid #aaa
+        padding 0.2em 0.2em 0.2em 5em
+        font-size 1em
+        position relative
+        z-index 1
+
+
+
