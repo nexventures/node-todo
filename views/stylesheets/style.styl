@@ -1,4 +1,7 @@
 @import reset
+@import font-awesome
+
+color-blue = #99f
 
 html
   height 100%
@@ -23,7 +26,7 @@ h2
   border-bottom 1px solid white
   h2
     font-weight 100
-    color #99f
+    color color-blue
 
 #footer
   padding 10px 20px
@@ -40,50 +43,58 @@ ul.to-do
     display block
     font-size 1.66em
     line-height 2em
+    position relative
     &:first-child
       border-top none
     span
     a
     a:hover
-      color: white;
+      color white
       display block
-      padding 0.33em 1em 0.33em 1.5em;
+      padding 0.33em 1em 0.33em 1em;
       text-decoration none
+      position relative
+      i
+        font-size 0.9em
+        margin-right 0.5em
 
-    a:hover
-    a.active
-      background-color #99f;
+    &:hover
+      background-color color-blue;
+      a
+      a:hover
+        color white
 
-  li.finished
+  li.complete
     text-decoration line-through
     color #999
     span
     a
     a:hover
+      z-index 1
       color #999
       text-decoration line-through
     a:hover
-    a.active
-      background-color #99f
       color: #ccc
+    a.remove
+      position absolute
+      right 0
+      top 0
+      z-index 100
+      display inline
+      text-decoration none
 
   li.add
+    &:hover
+      background none
     span
       padding-left 1em
       position relative
       label
-        position absolute
-        font-size 12px
-        left 0
-        margin-left 2.5em
-        z-index 100
-        color #999
+        color color-blue
       input[type='text']
         border 1px solid #aaa
-        padding 0.2em 0.2em 0.2em 5em
+        padding 0.2em
         font-size 1em
-        position relative
-        z-index 1
 
 
 

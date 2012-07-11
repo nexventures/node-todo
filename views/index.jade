@@ -2,13 +2,25 @@
 ul.to-do
   li.add
     span
-      label(for='add-input') Add New
-      input#add-input(
-        type='text'
-        required
-      )
-  li.in-progress
-    a(href='#') item 1
-  li.finished
-    a(href='#') item 2
+      form(method='POST')
+        label(for='add-input')
+          i.icon-plus-sign
+          input#add-input(
+            type='text'
+            name='add'
+            required
+          )
 
+  each item, i in items
+    li(class=item.status)
+      if item.status == 'in-progress'
+        a(href='/complete/' + item.id, title='id: ' + item.id, data-todo-id=item.id)
+          i.icon-check-empty
+          |#{item.name}
+      else
+        a(href='/in-progress/' + item.id, title='id: ' + item.id, data-todo-id=item.id)
+          i.icon-check
+          |#{item.name}
+        a.remove(href='/remove/' + item.id) remove
+
+      
