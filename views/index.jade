@@ -21,6 +21,7 @@ ul.to-do
         a(href='/in-progress/' + item.id, title='id: ' + item.id, data-todo-id=item.id)
           i.icon-check
           |#{item.name}
+          
         a.remove(href='/remove/' + item.id) remove
 
       
