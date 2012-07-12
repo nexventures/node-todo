@@ -3,9 +3,11 @@
  */
 
 var express = require('express')
+  , mongoose = require('mongoose')
   , stylus  = require('stylus')
-  , nib = require('nib')
-  , routes  = require('./routes');
+  , nib = require('nib');
+
+mongoose.connect('mongodb://localhost/node-todo');
 
 var app = module.exports = express.createServer();
 
@@ -27,7 +29,7 @@ app.configure(function(){
     compile: function(str, path) {
       return stylus(str)
         .set('filename', path)
-        .set('compress', true)
+        .set('compress', false)
         .use(nib())
         .import('nib');
     }
@@ -46,14 +48,17 @@ app.configure('production', function(){
 });
 
 // Routes
+var api = require('./controllers/api.js');
 
-app.get('/', routes.index);
+app.get('/', api.index);
 
-app.post('/', routes.create);
+app.post('/', api.create);
 
-app.get('/complete/:id', routes.mark_completed);
-app.get('/in-progress/:id', routes.mark_inprogress);
-app.get('/remove/:id', routes.remove);
+app.get('/complete/:id', api.mark_completed);
+app.get('/in-progress/:id', api.mark_inprogress);
+app.get('/remove/:id', api.remove);
+
+app.get('/empty', api.empty);
 
 app.listen(3000, function(){
   console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);

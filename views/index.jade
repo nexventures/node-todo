@@ -9,19 +9,21 @@ ul.to-do
             type='text'
             name='add'
             required
+            autofocus
           )
 
   each item, i in items
     li(class=item.status)
       if item.status == 'in-progress'
-        a(href='/complete/' + item.id, title='id: ' + item.id, data-todo-id=item.id)
+        a(href='/complete/' + item._id, title='id: ' + item._id, data-todo-id=item._id)
           i.icon-check-empty
           |#{item.name}
+          
       else
-        a(href='/in-progress/' + item.id, title='id: ' + item.id, data-todo-id=item.id)
+        a(href='/in-progress/' + item._id, title='id: ' + item._id, data-todo-id=item._id)
           i.icon-check
           |#{item.name}
-          
-        a.remove(href='/remove/' + item.id) remove
+
+        a.remove(href='/remove/' + item._id) remove
 
       
